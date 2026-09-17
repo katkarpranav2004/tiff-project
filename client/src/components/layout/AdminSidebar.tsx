@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import {
   LayoutDashboard,
   Award,
@@ -11,6 +11,7 @@ import {
   UserSquare2,
   HelpCircle,
   LogOut,
+  Home,
 } from 'lucide-react';
 import clsx from 'clsx';
 import { useQueryClient } from '@tanstack/react-query';
@@ -65,8 +66,15 @@ const AdminSidebar = () => {
         ))}
       </nav>
 
-      <div className="p-4 border-t border-white/10">
-        <button 
+      <div className="p-4 border-t border-white/10 space-y-1">
+        <Link
+          to="/"
+          className="flex items-center gap-3 px-3 py-2.5 w-full rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+        >
+          <Home size={20} />
+          View Website
+        </Link>
+        <button
           onClick={handleLogout}
           className="flex items-center gap-3 px-3 py-2.5 w-full text-left rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
         >
