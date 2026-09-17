@@ -1,0 +1,213 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  activityLogs ActivityLog[]
+
+  @@map("admins")
+}
+
+model Course {
+  id               String   @id @default(cuid())
+  title            String
+  slug             String   @unique
+  shortDescription String
+  description      String
+  category         String
+  duration         String?
+  level            String?
+  instructorName   String?
+  instructorBio    String?
+  thumbnailUrl     String?
+  brochureUrl      String?
+  eligibility      String?
+  learningOutcomes String?
+  syllabus         String?
+  isPublished      Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([category])
+  @@index([isPublished])
+  @@index([createdAt])
+  @@map("courses")
+}
+
+model Certificate {
+  id                  String   @id @default(cuid())
+  caieNumber          String   @unique
+  candidateName       String
+  courseName          String
+  issueDate           DateTime
+  certificateFileUrl  String
+  certificateFileType String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([candidateName])
+  @@index([courseName])
+  @@index([createdAt])
+  @@map("certificates")
+}
+
+model Event {
+  id              String   @id @default(cuid())
+  title           String
+  slug            String   @unique
+  description     String
+  imageUrl        String?
+  date            DateTime
+  time            String?
+  location        String?
+  registrationUrl String?
+  isPublished     Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([date])
+  @@index([isPublished])
+  @@map("events")
+}
+
+model Incubatee {
+  id          String   @id @default(cuid())
+  name        String
+  logo        String?
+  founder     String?
+  sector      String?
+  description String?
+  website     String?
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sector])
+  @@index([featured])
+  @@map("incubatees")
+}
+
+model Report {
+  id            String   @id @default(cuid())
+  title         String
+  year          String
+  fileUrl       String?
+  coverImageUrl String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([year])
+  @@map("reports")
+}
+
+model Mentor {
+  id           String   @id @default(cuid())
+  name         String
+  designation  String?
+  organization String?
+  photo        String?
+  bio          String?
+  expertise    String?
+  linkedin     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("mentors")
+}
+
+model BoardMember {
+  id          String   @id @default(cuid())
+  name        String
+  designation String
+  bio         String?
+  imageUrl    String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([order])
+  @@map("board_members")
+}
+
+model Program {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  icon        String?
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([order])
+  @@index([isPublished])
+  @@map("programs")
+}
+
+model FAQ {
+  id          String   @id @default(cuid())
+  question    String
+  answer      String
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([order])
+  @@index([isPublished])
+  @@map("faqs")
+}
+
+model ActivityLog {
+  id         String   @id @default(cuid())
+  adminId    String
+  action     String
+  entityType String
+  entityId   String?
+  metadata   String?
+  createdAt  DateTime @default(now())
+
+  admin Admin @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([adminId])
+  @@index([entityType])
+  @@index([createdAt])
+  @@map("activity_logs")
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([isRead])
+  @@index([createdAt])
+  @@map("contact_submissions")
+}
+
+model SiteSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+
+  @@map("site_settings")
+}

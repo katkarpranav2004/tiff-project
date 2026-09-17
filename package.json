@@ -1,0 +1,27 @@
+{
+  "name": "tiss-incube",
+  "version": "1.0.0",
+  "description": "TISS Incube Foundation — Full-Stack CMS-Driven Website",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "build": "cd client && npm run build && cd ../server && npm run build",
+    "db:migrate": "cd prisma && npx prisma migrate dev",
+    "db:seed": "cd prisma && npx prisma db seed",
+    "db:studio": "cd prisma && npx prisma studio",
+    "db:generate": "npx prisma generate --schema=./prisma/schema.prisma"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prisma": "^5.22.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "bcryptjs": "^3.0.3"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}

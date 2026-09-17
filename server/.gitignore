@@ -1,0 +1,14 @@
+# Dependencies & build
+node_modules
+dist
+
+# Environment files (never commit real values; .env.example is allowed)
+.env
+.env.*
+!.env.example
+
+# Local file uploads (dev fallback)
+uploads
+
+# Logs
+*.log
