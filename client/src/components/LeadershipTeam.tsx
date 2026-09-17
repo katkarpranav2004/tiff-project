@@ -127,7 +127,7 @@ const LeadershipTeam = () => {
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-t from-warm-ivory to-transparent" />
             <div
               ref={listRef}
-              className="h-[54vh] snap-y snap-mandatory overflow-y-auto scroll-smooth text-center [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+              className="h-[54vh] overflow-y-auto overscroll-y-auto scroll-smooth text-center [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             >
               <div className="h-[calc(27vh-1rem)]" />
               {MEMBERS.map((person, i) => (
@@ -135,7 +135,7 @@ const LeadershipTeam = () => {
                   key={person.name}
                   ref={(el) => { itemRefs.current[i] = el; }}
                   onClick={() => selectAt(i)}
-                  className={`flex h-[9vh] w-full snap-center items-center justify-center px-3 text-center font-serif leading-tight tracking-tight transition-all duration-300 ease-out ${
+                  className={`flex h-[9vh] w-full items-center justify-center px-3 text-center font-serif leading-tight tracking-tight transition-all duration-300 ease-out ${
                     i === active
                       ? 'scale-105 text-2xl font-bold text-foundation-dark sm:text-4xl'
                       : 'text-xl font-normal text-stone-slate/25 sm:text-2xl'

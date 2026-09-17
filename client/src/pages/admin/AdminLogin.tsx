@@ -71,7 +71,7 @@ const AdminLogin = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className={inputCls}
-                placeholder="admin@tissincubefoundation.com"
+                placeholder=""
               />
             </div>
           </div>
