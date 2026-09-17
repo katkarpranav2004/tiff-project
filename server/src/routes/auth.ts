@@ -46,15 +46,20 @@ router.post('/login', loginLimiter, validate(loginSchema), asyncHandler(async (r
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   });
 
-  // Log activity
-  await prisma.activityLog.create({
-    data: {
-      adminId: admin.id,
-      action: 'LOGIN',
-      entityType: 'admin',
-      entityId: admin.id,
-    },
-  });
+  // Log activity (best-effort — never fail login if logging fails)
+  try {
+    await prisma.activityLog.create({
+      data: {
+        adminId: admin.id,
+        action: 'LOGIN',
+        entityType: 'admin',
+        entityId: admin.id,
+      },
+    });
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error('activityLog LOGIN failed:', e);
+  }
 
   res.json({
     success: true,
@@ -102,14 +107,19 @@ router.post('/refresh', asyncHandler(async (req, res) => {
 // POST /api/auth/logout
 router.post('/logout', authenticate, asyncHandler(async (req: AuthRequest, res) => {
   if (req.admin) {
-    await prisma.activityLog.create({
-      data: {
-        adminId: req.admin.id,
-        action: 'LOGOUT',
-        entityType: 'admin',
-        entityId: req.admin.id,
-      },
-    });
+    try {
+      await prisma.activityLog.create({
+        data: {
+          adminId: req.admin.id,
+          action: 'LOGOUT',
+          entityType: 'admin',
+          entityId: req.admin.id,
+        },
+      });
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error('activityLog LOGOUT failed:', e);
+    }
   }
 
   res.clearCookie('refreshToken');
