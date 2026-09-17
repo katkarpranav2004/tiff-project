@@ -448,8 +448,8 @@ const Home = () => {
 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 {[
   { slug: 'sampurnearth', title: 'Sampurn(e)arth Environment Solutions', sector: 'Waste & Environment', loc: 'Mumbai', image: '/ventures/sampurnearth-logo.png', logo: true, note: 'Decentralised waste management that turns waste into livelihoods for informal waste workers.' },
-  { slug: 'even-cargo', title: 'Even Cargo', sector: 'Women & Logistics', loc: 'Delhi', image: '/ventures/evencargo.jpg', logo: false, note: 'India’s first women-only e-commerce logistics company, training women from marginalised communities as delivery professionals.' },
-  { slug: 'unexplored-bastar', title: 'Unexplored Bastar', sector: 'Sustainable Tourism', loc: 'Bastar, Chhattisgarh', image: '/ventures/bastar.jpg', logo: false, note: 'Community-based, sustainable tourism that makes tribal and rural youth participants and beneficiaries.' },
+  { slug: 'even-cargo', title: 'Even Cargo', sector: 'Women & Logistics', loc: 'Delhi', image: '/ventures/evencargo-logo.png', logo: true, note: 'India’s first women-only e-commerce logistics company, training women from marginalised communities as delivery professionals.' },
+  { slug: 'unexplored-bastar', title: 'Unexplored Bastar', sector: 'Sustainable Tourism', loc: 'Bastar, Chhattisgarh', image: '/ventures/bastar-logo.png', logo: true, note: 'Community-based, sustainable tourism that makes tribal and rural youth participants and beneficiaries.' },
 ].map((v) => (
   <Link key={v.slug} to={`/events/story/${v.slug}`} className="group bg-white rounded-xl border border-subtle-border p-7 flex flex-col justify-between hover:border-brand-green hover:shadow-lg transition-all">
     <div>
@@ -461,7 +461,7 @@ const Home = () => {
         </span>
       </div>
       {v.logo && (
-        <div className="mb-4 flex h-16 items-center justify-start">
+        <div className="mb-4 flex h-20 w-full items-center justify-center">
           <img src={v.image} alt={v.title} className="max-h-full max-w-[180px] object-contain" loading="lazy" />
         </div>
       )}
@@ -504,7 +504,7 @@ const Home = () => {
       cards={[
         { number: '01', slug: 'sahayatha-healthcare', image: '/ventures/sahayatha.jpg', title: 'Sahayatha Healthcare', loc: 'Coimbatore', tag: 'HealthTech', logo: false, desc: 'Affordable, community-focused healthcare bringing quality medical services to underserved patients.' },
         { number: '02', slug: 'forschmedx-trachease', image: '/ventures/forschmedx.jpg', title: 'ForschMedX — TrachEase', loc: 'Punjab / Mumbai', tag: 'MedTech', logo: false, desc: 'A medical device venture improving tracheostomy care for patients and clinicians.' },
-        { number: '03', slug: 'xen-farms', image: '/ventures/xen-logo.png', title: 'XEN Farms', loc: 'Rural India', tag: 'AgriTech', logo: true, desc: 'Natural farming, technology and market access that raise productivity and rebuild soil health — reaching 5,000+ farmers.' },
+        { number: '03', slug: 'even-cargo', image: '/ventures/evencargo-logo.png', title: 'Even Cargo', loc: 'Delhi', tag: 'Logistics', logo: true, desc: 'India’s first women-only e-commerce logistics company, training women from marginalised communities as delivery professionals.' },
       ]}
     />
   </div>
