@@ -107,7 +107,7 @@ const LeadershipTeam = () => {
 
         <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-8">
           {/* Left: photo + caption */}
-          <div className="order-2 flex flex-col lg:order-1 lg:col-span-5">
+          <div className="order-2 flex flex-col lg:order-1 lg:col-span-4">
             <div className="relative mx-auto aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-3xl border border-subtle-border bg-white shadow-card lg:h-[62vh] lg:max-h-[640px] lg:w-auto">
               {m.photo ? (
                 <img key={m.photo} src={m.photo} alt={m.name} className="h-full w-full object-cover animate-[fade-up_0.35s_ease-out]" />
@@ -149,7 +149,7 @@ const LeadershipTeam = () => {
           </div>
 
           {/* Right: details */}
-          <div className="order-3 lg:col-span-3">
+          <div className="order-3 lg:col-span-4">
             <div className="rounded-3xl border border-subtle-border bg-parchment p-7 shadow-card">
               <span className="inline-block rounded-full bg-foundation-green px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-widest text-warm-ivory">{m.role}</span>
               <h3 className="mt-4 font-serif text-2xl font-bold text-foundation-dark">{m.name}</h3>
