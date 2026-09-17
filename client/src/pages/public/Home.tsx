@@ -504,7 +504,7 @@ const Home = () => {
       cards={[
         { number: '01', slug: 'sahayatha-healthcare', image: '/ventures/sahayatha.jpg', title: 'Sahayatha Healthcare', loc: 'Coimbatore', tag: 'HealthTech', logo: false, desc: 'Affordable, community-focused healthcare bringing quality medical services to underserved patients.' },
         { number: '02', slug: 'forschmedx-trachease', image: '/ventures/forschmedx.jpg', title: 'ForschMedX — TrachEase', loc: 'Punjab / Mumbai', tag: 'MedTech', logo: false, desc: 'A medical device venture improving tracheostomy care for patients and clinicians.' },
-        { number: '03', slug: 'even-cargo', image: '/ventures/evencargo-logo.png', title: 'Even Cargo', loc: 'Delhi', tag: 'Logistics', logo: true, desc: 'India’s first women-only e-commerce logistics company, training women from marginalised communities as delivery professionals.' },
+        { number: '03', slug: 'even-cargo', image: '/ventures/evencargo.jpg', title: 'Even Cargo', loc: 'Delhi', tag: 'Logistics', logo: false, desc: 'India’s first women-only e-commerce logistics company, training women from marginalised communities as delivery professionals.' },
       ]}
     />
   </div>
