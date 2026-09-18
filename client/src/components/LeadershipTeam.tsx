@@ -52,109 +52,124 @@ const MEMBERS: Member[] = [
   },
 ];
 
+const ITEM_VH = 9; // height of each name row, in vh
+const VIEW_VH = 54; // names viewport height, in vh
+
 function initials(name: string) {
   return name.replace(/^(Prof\.|Dr\.|Mr\.|Ms\.)\s*/i, '').split(' ').filter(Boolean).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
 }
 
 const LeadershipTeam = () => {
   const [active, setActive] = useState(0);
-  const listRef = useRef<HTMLDivElement>(null);
-  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const wrapRef = useRef<HTMLElement>(null);
   const raf = useRef(0);
   const m = MEMBERS[active];
+  const last = MEMBERS.length - 1;
 
-  // Active = the name nearest the vertical center of the scroll box (YC style).
+  // YC-style pinned scroll: the section stays fixed while the page scrolls
+  // through it; the active name advances with scroll progress, then releases.
   useEffect(() => {
-    const c = listRef.current;
-    if (!c) return;
     const compute = () => {
-      const center = c.scrollTop + c.clientHeight / 2;
-      let best = 0;
-      let bestDist = Infinity;
-      itemRefs.current.forEach((el, i) => {
-        if (!el) return;
-        const mid = el.offsetTop + el.offsetHeight / 2;
-        const d = Math.abs(mid - center);
-        if (d < bestDist) { bestDist = d; best = i; }
-      });
-      setActive(best);
+      const el = wrapRef.current;
+      if (!el) return;
+      const total = el.offsetHeight - window.innerHeight;
+      const scrolled = Math.min(Math.max(-el.getBoundingClientRect().top, 0), total);
+      const p = total > 0 ? scrolled / total : 0;
+      setActive(Math.round(p * last));
     };
     const onScroll = () => {
       cancelAnimationFrame(raf.current);
       raf.current = requestAnimationFrame(compute);
     };
-    c.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     compute();
-    return () => { c.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf.current); };
-  }, []);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      cancelAnimationFrame(raf.current);
+    };
+  }, [last]);
 
-  const selectAt = (i: number) => {
-    itemRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // Clicking a name scrolls the page to that step of the pinned section.
+  const goTo = (i: number) => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const total = el.offsetHeight - window.innerHeight;
+    const top = window.scrollY + el.getBoundingClientRect().top;
+    window.scrollTo({ top: top + (i / last) * total, behavior: 'smooth' });
   };
 
+  const stackOffset = VIEW_VH / 2 - ITEM_VH / 2 - active * ITEM_VH;
+
   return (
-    <section className="w-full bg-warm-ivory border-b border-subtle-border">
-      <div className="mx-auto flex min-h-[calc(100vh-5rem)] max-w-7xl flex-col justify-center px-6 py-8 lg:px-12">
-        <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 mb-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-brand-green"></span>
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-foundation-green">Democratic Governance</span>
-          </div>
-          <h2 className="font-serif text-3xl font-bold tracking-tight text-foundation-dark sm:text-4xl">
-            Leadership Team &amp; Board of Directors
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-8">
-          {/* Left: photo + caption */}
-          <div className="order-2 flex flex-col lg:order-1 lg:col-span-4">
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-3xl border border-subtle-border bg-white shadow-card lg:h-[62vh] lg:max-h-[640px] lg:w-auto">
-              {m.photo ? (
-                <img key={m.photo} src={m.photo} alt={m.name} className="h-full w-full object-cover animate-[fade-up_0.35s_ease-out]" />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center bg-foundation-green">
-                  <span className="font-serif text-8xl font-bold text-ochre-light">{initials(m.name)}</span>
-                </div>
-              )}
+    <section
+      ref={wrapRef}
+      className="relative w-full bg-warm-ivory border-b border-subtle-border"
+      style={{ height: `${MEMBERS.length * 80}vh` }}
+    >
+      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden px-6 py-8 lg:px-12">
+        <div className="mx-auto w-full max-w-7xl">
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center gap-2 mb-1.5">
+              <span className="h-2.5 w-2.5 rounded-full bg-brand-green"></span>
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-foundation-green">Democratic Governance</span>
             </div>
-            <p className="mt-3 text-center text-sm text-stone-slate font-sans">{m.name} · {m.role}</p>
+            <h2 className="font-serif text-3xl font-bold tracking-tight text-foundation-dark sm:text-4xl">
+              Leadership Team &amp; Board of Directors
+            </h2>
           </div>
 
-          {/* Center: scroll-snap name list */}
-          <div className="relative order-1 lg:order-2 lg:col-span-4">
-            {/* fade edges */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-warm-ivory to-transparent" />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-t from-warm-ivory to-transparent" />
-            <div
-              ref={listRef}
-              className="h-[54vh] overflow-y-auto overscroll-y-auto scroll-smooth text-center [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-            >
-              <div className="h-[calc(27vh-1rem)]" />
-              {MEMBERS.map((person, i) => (
-                <button
-                  key={person.name}
-                  ref={(el) => { itemRefs.current[i] = el; }}
-                  onClick={() => selectAt(i)}
-                  className={`flex h-[9vh] w-full items-center justify-center px-3 text-center font-serif leading-tight tracking-tight transition-all duration-300 ease-out ${
-                    i === active
-                      ? 'scale-105 text-2xl font-bold text-foundation-dark sm:text-4xl'
-                      : 'text-xl font-normal text-stone-slate/25 sm:text-2xl'
-                  }`}
+          <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-8">
+            {/* Left: photo + caption */}
+            <div className="order-2 flex flex-col lg:order-1 lg:col-span-4">
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-3xl border border-subtle-border bg-white shadow-card lg:h-[62vh] lg:max-h-[640px] lg:w-auto">
+                {m.photo ? (
+                  <img key={m.photo} src={m.photo} alt={m.name} className="h-full w-full object-cover animate-[fade-up_0.35s_ease-out]" />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-foundation-green">
+                    <span className="font-serif text-8xl font-bold text-ochre-light">{initials(m.name)}</span>
+                  </div>
+                )}
+              </div>
+              <p className="mt-3 text-center text-sm text-stone-slate font-sans">{m.name} · {m.role}</p>
+            </div>
+
+            {/* Center: name list driven by page-scroll progress */}
+            <div className="relative order-1 lg:order-2 lg:col-span-4">
+              <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-warm-ivory to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-t from-warm-ivory to-transparent" />
+              <div className="overflow-hidden" style={{ height: `${VIEW_VH}vh` }}>
+                <div
+                  className="transition-transform duration-500 ease-out"
+                  style={{ transform: `translateY(${stackOffset}vh)` }}
                 >
-                  {person.name}
-                </button>
-              ))}
-              <div className="h-[calc(27vh-1rem)]" />
+                  {MEMBERS.map((person, i) => (
+                    <button
+                      key={person.name}
+                      onClick={() => goTo(i)}
+                      style={{ height: `${ITEM_VH}vh` }}
+                      className={`flex w-full items-center justify-center px-3 text-center font-serif leading-tight tracking-tight transition-all duration-300 ease-out ${
+                        i === active
+                          ? 'scale-105 text-2xl font-bold text-foundation-dark sm:text-4xl'
+                          : 'text-xl font-normal text-stone-slate/25 sm:text-2xl'
+                      }`}
+                    >
+                      {person.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
 
-          {/* Right: details */}
-          <div className="order-3 lg:col-span-4">
-            <div className="rounded-3xl border border-subtle-border bg-parchment p-7 shadow-card">
-              <span className="inline-block rounded-full bg-foundation-green px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-widest text-warm-ivory">{m.role}</span>
-              <h3 className="mt-4 font-serif text-2xl font-bold text-foundation-dark">{m.name}</h3>
-              <div className="mt-2 h-0.5 w-10 bg-ochre-gold"></div>
-              <p className="mt-4 text-sm leading-relaxed text-stone-slate font-sans">{m.detail}</p>
+            {/* Right: details */}
+            <div className="order-3 lg:col-span-4">
+              <div className="rounded-3xl border border-subtle-border bg-parchment p-7 shadow-card">
+                <span className="inline-block rounded-full bg-foundation-green px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-widest text-warm-ivory">{m.role}</span>
+                <h3 className="mt-4 font-serif text-2xl font-bold text-foundation-dark">{m.name}</h3>
+                <div className="mt-2 h-0.5 w-10 bg-ochre-gold"></div>
+                <p className="mt-4 text-sm leading-relaxed text-stone-slate font-sans">{m.detail}</p>
+              </div>
             </div>
           </div>
         </div>

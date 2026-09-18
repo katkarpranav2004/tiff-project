@@ -226,7 +226,7 @@ const Home = () => {
 <div className="lg:col-span-5">
 <div className="bg-warm-alabaster p-5 rounded-2xl border border-subtle-border shadow-sm">
 <div className="rounded-xl overflow-hidden aspect-[4/3] bg-warm-sand mb-4 relative">
-<img alt="Grassroots social workers in open field dialogue" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwUoOI9EYhuSJF_FmPHZZezP--H2JYEBGFVxG0Alak_N8LcUUE4f6CARxebp2zb-0E-k0-NjEm3cNuIHfVB-tjrhPmkO0k0TSeL2hRCSzJeD7jdBhCy_OLT_0cHSP1hjefNaesbiGFc2Ufy0S6Qqmbttuiwk_kd1T57Jhon6UOnWP9DbCEnWDbC_h1R1YG3vqoTOrLS28mMHuXq0DI8qIHr9FV2J-Xjlz9-Ouyvp5zboJX9M8cwTMx8A" />
+<img alt="Grassroots social workers in open field dialogue" className="w-full h-full object-cover" src="/about-field.jpeg" />
 <div className="absolute bottom-3 left-3 bg-foundation-dark/90 text-warm-ivory px-3 py-1 rounded-full text-[10px] font-mono tracking-wider border border-white/20">
                 Field Work in Rural Areas
               </div>
