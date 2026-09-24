@@ -22,7 +22,7 @@ export const EVENT_STORIES: EventStoryData[] = [
     image: 'https://tissincubefoundation.com/wp-content/uploads/2025/09/Slide-16_9-47.png',
     tags: ['Governance', 'AGM'],
     description: [
-      'TISS Incube Foundation, registered as a Section 8 company, will hold its Annual General Meeting on the date and time noted above.',
+      'TISS Incube Foundation, an independent not-for-profit company, will hold its Annual General Meeting on the date and time noted above.',
       'The notice was issued by Satyajit Majumdar, Managing Director, on 9 September 2025 from Mumbai. An official PDF notice is available for reference.',
     ],
     agenda: [

@@ -16,7 +16,7 @@ const Footer = () => {
               </div>
               <div>
                 <span className="font-serif font-bold text-warm-ivory text-base block leading-tight">TISS Incube Foundation</span>
-                <span className="text-[11px] font-mono text-brand-green">Section 8 Entity | CIN: U85300PN2021NPL199994</span>
+                <span className="text-[11px] font-mono text-brand-green">Non-Profit Entity | CIN: U85300PN2021NPL199994</span>
               </div>
             </div>
             <p className="text-xs text-warm-sand/70 leading-relaxed max-w-sm font-sans">
@@ -58,6 +58,7 @@ const Footer = () => {
             <h4 className="text-xs font-mono font-bold text-warm-ivory tracking-widest uppercase mb-4 pb-2 border-b border-white/10">Governance &amp; Reports</h4>
             <ul className="space-y-2.5 text-xs text-warm-sand/70 font-sans">
               <li className=""><Link className="hover:text-warm-ivory transition-colors" to="/about">Board of Directors</Link></li>
+              <li className=""><Link className="hover:text-warm-ivory transition-colors" to="/partnerships">Partnerships</Link></li>
               <li className=""><a className="hover:text-warm-ivory transition-colors" href={`${REPORT_BASE}/Incubation-Centre-Annual-Report-2024-25.pdf`} target="_blank" rel="noopener noreferrer">Annual Report 2024–25</a></li>
               <li className=""><a className="hover:text-warm-ivory transition-colors" href={`${REPORT_BASE}/TIF-Annual-Report-2023-24.pdf`} target="_blank" rel="noopener noreferrer">Annual Report 2023–24</a></li>
               <li className=""><a className="hover:text-warm-ivory transition-colors" href={`${REPORT_BASE}/TIF-Annual-Report-2022-23.pdf`} target="_blank" rel="noopener noreferrer">Annual Report 2022–23</a></li>
@@ -81,7 +82,7 @@ const Footer = () => {
         
         {/* Bottom Declarations */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] font-mono text-warm-sand/50">
-          <p className="">© 2025 TISS Incube Foundation. A Section 8 Company incorporated under the Companies Act, 2013.</p>
+          <p className="">© 2025 TISS Incube Foundation. A non-profit company incorporated under the Companies Act, 2013.</p>
           <div className="flex items-center gap-6">
             <span className="inline-flex items-center gap-1.5 text-warm-sand/70">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-green"></span>

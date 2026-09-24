@@ -1,9 +1,12 @@
 
 import { Link, useNavigate } from 'react-router-dom';
-import DotField from '../../components/DotField';
 import LeadershipTeam from '../../components/LeadershipTeam';
 import CollapsingCards from '../../components/CollapsingCards';
 import CountUp from '../../components/CountUp';
+import WorldMapExplorer from '../../components/home/WorldMapExplorer';
+import RotatingPartners from '../../components/home/RotatingPartners';
+import VantaGlobeBackground from '../../components/home/VantaGlobeBackground';
+import HeroLightSweep from '../../components/home/HeroLightSweep';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -11,106 +14,55 @@ const Home = () => {
     <div className="w-full">
       
 {/**/}
-<section className="relative w-full border-b border-subtle-border overflow-hidden bg-white">{/**/}
+<section className="relative w-full border-b border-white/10 overflow-hidden bg-[#23153c]">{/**/}
 
 {/**/}
-<div className="relative min-h-[calc(100vh-5rem)] flex items-center py-12 px-6 lg:px-12 bg-white overflow-hidden border-b border-subtle-border">
-  {/**/}
-  <div className="absolute inset-0 z-0">
-    <DotField
-      dotRadius={3}
-      dotSpacing={16}
-      bulgeStrength={67}
-      glowRadius={0}
-      sparkle={false}
-      waveAmplitude={0}
-      gradientFrom="rgba(19, 51, 36, 0.35)"
-      gradientTo="rgba(106, 180, 62, 0.30)"
-      glowColor="transparent"
-    />
-  </div>
-
+<div className="relative min-h-[calc(100vh-5rem)] flex items-center py-12 px-6 lg:px-12 overflow-hidden border-b border-white/10">
+  <VantaGlobeBackground />
+  <HeroLightSweep />
   {/**/}
   <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center">
     {/**/}
-    <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
-      <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-foundation-green text-warm-ivory text-xs font-mono font-medium uppercase tracking-wider shadow-sm">
-        <span className="material-symbols-outlined text-[15px] text-ochre-light">account_balance</span>
-        <span className="">Social Enterprise Incubator</span>
-      </div>
-      <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-parchment border border-ochre-gold text-foundation-dark font-mono text-[10px] uppercase tracking-widest font-semibold shadow-sm">
-        <span className="material-symbols-outlined text-[14px] text-ochre-gold">gavel</span>
-        <span className="">Section 8 Non-Profit</span>
-      </div>
-    </div>
-
-    {/**/}
-    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foundation-dark tracking-tight leading-[1.1] max-w-4xl">
-      Empowering startups for the <span className="italic font-normal text-foundation-green">next wave of innovations</span>.
+    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-warm-ivory tracking-tight leading-[1.1] max-w-4xl">
+      Empowering startups for the <span className="italic font-normal text-[#ff6fa3]">next wave of innovations</span>.
     </h1>
 
     {/**/}
-    <p className="text-stone-slate text-base sm:text-lg mt-6 leading-relaxed font-sans max-w-3xl">
-      A Section 8 non-profit company jointly established by the <strong className="text-foundation-dark font-semibold">Tata Institute of Social Sciences</strong> and the <strong className="text-foundation-dark font-semibold">Bombay Mothers and Children Welfare Society</strong>, we support rural and social entrepreneurs with incubation, mentorship, and access to resources.
+    <p className="text-warm-sand/80 text-base sm:text-lg mt-6 leading-relaxed font-sans max-w-3xl">
+      An independent non-profit company jointly established by the <strong className="text-warm-ivory font-semibold">Tata Institute of Social Sciences</strong> and the <strong className="text-warm-ivory font-semibold">Bombay Mothers and Children Welfare Society</strong>, we support rural and social entrepreneurs with incubation, mentorship, and access to resources.
     </p>
 
     {/**/}
     <div className="flex flex-wrap items-center justify-center gap-4 mt-8 w-full">
-      <a className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-foundation-green hover:bg-foundation-dark text-warm-ivory font-mono text-xs font-bold uppercase tracking-wider shadow-md transition-all" href="https://docs.google.com/forms/d/e/1FAIpQLSdh6Y12LkpMjNVRetQnPYi8HPBeGmgis8siEsYx5dMCSUPyPA/viewform" rel="noopener noreferrer" target="_blank">
+      <a className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-foundation-green hover:bg-brand-green text-warm-ivory font-mono text-xs font-bold uppercase tracking-wider shadow-md transition-all" href="https://docs.google.com/forms/d/e/1FAIpQLSdh6Y12LkpMjNVRetQnPYi8HPBeGmgis8siEsYx5dMCSUPyPA/viewform" rel="noopener noreferrer" target="_blank">
         <span className="material-symbols-outlined text-[18px] text-ochre-light">add_task</span>
         <span className="">Apply for Incubation</span>
       </a>
-      <a className="inline-flex items-center gap-2 px-5 py-3.5 rounded-lg bg-white hover:bg-warm-alabaster border border-subtle-border text-foundation-dark font-mono text-xs font-semibold uppercase tracking-wider shadow-sm transition-all" href="/certificates">
+      <a className="inline-flex items-center gap-2 px-5 py-3.5 rounded-lg bg-white hover:bg-warm-alabaster border border-transparent text-foundation-dark font-mono text-xs font-semibold uppercase tracking-wider shadow-sm transition-all" href="/certificates">
         <span className="material-symbols-outlined text-[18px] text-brand-green">verified</span>
         <span className="">Verify a Certificate</span>
       </a>
-      <a className="inline-flex items-center gap-2 px-5 py-3.5 rounded-lg text-stone-slate hover:text-foundation-dark hover:bg-warm-alabaster font-mono text-xs font-semibold uppercase tracking-wider transition-colors border border-transparent hover:border-subtle-border" href="/annual-reports">
+      <a className="inline-flex items-center gap-2 px-5 py-3.5 rounded-lg text-warm-sand/70 hover:text-warm-ivory hover:bg-white/10 font-mono text-xs font-semibold uppercase tracking-wider transition-colors border border-transparent hover:border-white/20" href="/annual-reports">
         <span className="material-symbols-outlined text-[18px]">menu_book</span>
         <span className="">Annual Reports</span>
       </a>
     </div>
 
     {/**/}
-    <div className="w-full max-w-3xl mt-12 pt-8 border-t border-subtle-border grid grid-cols-1 sm:grid-cols-3 gap-4">
-      <div className="p-5 bg-warm-ivory rounded-xl border border-subtle-border text-center flex flex-col items-center justify-center shadow-sm">
-        <div className="flex items-center justify-center gap-2 font-mono text-[10px] text-stone-slate uppercase tracking-wider mb-1">
-          <span className="">Incorporated</span>
-          <span className="text-stone-slate/30">•</span>
-          <span className="text-foundation-green font-bold">Pune</span>
-        </div>
-        <span className="text-3xl font-serif font-bold text-foundation-dark"><CountUp>Est. 2021</CountUp></span>
-        <p className="text-[11px] text-stone-slate mt-1">Registered in Rajgurunagar, Pune</p>
-      </div>
-      <div className="p-5 bg-warm-ivory rounded-xl border border-subtle-border text-center flex flex-col items-center justify-center shadow-sm">
-        <div className="flex items-center justify-center gap-2 font-mono text-[10px] text-stone-slate uppercase tracking-wider mb-1">
-          <span className="">Legal Status</span>
-          <span className="text-stone-slate/30">•</span>
-          <span className="text-brand-green font-bold">Active</span>
-        </div>
-        <span className="text-3xl font-serif font-bold text-foundation-dark"><CountUp>Sec 8</CountUp></span>
-        <p className="text-[11px] text-stone-slate mt-1">Not-for-Profit Company</p>
-      </div>
-      <div className="p-5 bg-warm-ivory rounded-xl border border-subtle-border text-center flex flex-col items-center justify-center shadow-sm">
-        <div className="flex items-center justify-center gap-2 font-mono text-[10px] text-stone-slate uppercase tracking-wider mb-1">
-          <span className="">Founders</span>
-          <span className="text-stone-slate/30">•</span>
-          <span className="text-foundation-green font-bold">Joint</span>
-        </div>
-        <span className="text-3xl font-serif font-bold text-foundation-dark">TISS × BMCWS</span>
-        <p className="text-[11px] text-stone-slate mt-1">Established jointly by both</p>
-      </div>
+    <div className="w-full max-w-4xl mt-12 pt-8 border-t border-white/10 text-left">
+      <WorldMapExplorer />
     </div>
 
     {/**/}
-    <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-stone-slate">
+    <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-warm-sand/70">
       <span className="flex items-center gap-1.5 font-medium">
         <span className="w-2 h-2 rounded-full bg-status-verified"></span>
         Focus on rural &amp; difficult areas
       </span>
-      <span className="text-stone-slate/30 hidden sm:inline">•</span>
+      <span className="text-white/20 hidden sm:inline">•</span>
       <span className="">Offices in Mumbai &amp; Pune</span>
-      <span className="text-stone-slate/30 hidden sm:inline">•</span>
-      <span className="text-foundation-green font-semibold">TISS &amp; BMCWS</span>
+      <span className="text-white/20 hidden sm:inline">•</span>
+      <span className="text-brand-green font-semibold">TISS &amp; BMCWS</span>
     </div>
   </div>
 </div></section>
@@ -178,6 +130,10 @@ const Home = () => {
 </div>
 </section>
 {/**/}
+      <RotatingPartners />
+{/**/}
+      <LeadershipTeam />
+{/**/}
 <section className="w-full bg-white py-16 border-b border-subtle-border" id="about">
 <div className="max-w-7xl mx-auto px-6 lg:px-12">
 {/**/}
@@ -186,7 +142,7 @@ const Home = () => {
 <span className="w-2.5 h-2.5 bg-brand-green rounded-full"></span>
 <span className="text-xs font-mono font-bold text-foundation-green tracking-widest uppercase">About the Foundation</span>
 </div>
-<span className="text-xs font-mono text-stone-slate uppercase tracking-wider">Section 8 Company • Established 2021</span>
+<span className="text-xs font-mono text-stone-slate uppercase tracking-wider">Non-Profit Company • Established 2021</span>
 </div>
 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 {/**/}
@@ -195,7 +151,7 @@ const Home = () => {
             Supporting rural and social entrepreneurs from the ground up.
           </h2>
 <p className="text-stone-slate text-sm sm:text-base leading-relaxed mb-4 font-sans">
-            The <strong>TISS Incube Foundation</strong> is an independent incubation centre set up under Section 8 of the Companies Act by the <strong>Tata Institute of Social Sciences (TISS)</strong> and the <strong>Bombay Mothers and Children Welfare Society (BMCWS)</strong>.
+            The <strong>TISS Incube Foundation</strong> is an independent incubation centre set up as a non-profit company by the <strong>Tata Institute of Social Sciences (TISS)</strong> and the <strong>Bombay Mothers and Children Welfare Society (BMCWS)</strong>.
           </p>
 <p className="text-stone-slate text-sm sm:text-base leading-relaxed mb-8 font-sans">
             We support potential rural and social entrepreneurs, with a focus on rural and difficult areas. Founders receive mentorship, networking with industry leaders and investors, business and growth support, and access to resources.
@@ -243,6 +199,33 @@ const Home = () => {
 </div>
 </div>
 </div>
+</section>
+{/**/}
+{/* Events */}
+<section className="w-full bg-white py-16 border-b border-subtle-border">
+  <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-subtle-border pb-6 mb-8 gap-4">
+      <div>
+        <div className="flex items-center gap-2 mb-2">
+          <span className="w-2.5 h-2.5 rounded-full bg-brand-green"></span>
+          <span className="text-xs font-mono font-bold text-foundation-green tracking-widest uppercase">Incubation Stories</span>
+        </div>
+        <h2 className="text-3xl sm:text-4xl font-serif font-bold text-foundation-dark tracking-tight">Featured Ventures</h2>
+      </div>
+      <a href="/events" className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-foundation-green hover:text-brand-green transition-colors">
+        View all events
+        <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+      </a>
+    </div>
+
+    <CollapsingCards
+      cards={[
+        { number: '01', slug: 'sahayatha-healthcare', image: '/ventures/sahayatha.jpg', title: 'Sahayatha Healthcare', loc: 'Coimbatore', tag: 'HealthTech', logo: false, desc: 'Affordable, community-focused healthcare bringing quality medical services to underserved patients.' },
+        { number: '02', slug: 'forschmedx-trachease', image: '/ventures/forschmedx.jpg', title: 'ForschMedX — TrachEase', loc: 'Punjab / Mumbai', tag: 'MedTech', logo: false, desc: 'A medical device venture improving tracheostomy care for patients and clinicians.' },
+        { number: '03', slug: 'even-cargo', image: '/ventures/evencargo.jpg', title: 'Even Cargo', loc: 'Delhi', tag: 'Logistics', logo: false, desc: 'India’s first women-only e-commerce logistics company, training women from marginalised communities as delivery professionals.' },
+      ]}
+    />
+  </div>
 </section>
 {/**/}
 <section className="w-full bg-parchment py-16 border-b border-subtle-border" id="programs">
@@ -380,52 +363,6 @@ const Home = () => {
 </div>
 </section>
 {/**/}
-{/* Partners */}
-<section className="w-full bg-warm-alabaster py-20 border-b border-subtle-border">
-<div className="max-w-7xl mx-auto px-6 lg:px-12">
-<div className="grid grid-cols-2 items-center gap-y-12 lg:grid-cols-9 lg:gap-8">
-  {/* Left logos */}
-  <div className="order-2 grid grid-cols-2 gap-x-8 gap-y-10 lg:order-1 lg:col-span-3">
-    {[
-      { src: '/partners/british-council.png', name: 'British Council' },
-      { src: '/partners/british-high-commission.png', name: 'British High Commission' },
-      { src: '/partners/unctad.png', name: 'UN UNCTAD' },
-      { src: '/partners/unesco.png', name: 'UNESCO' },
-    ].map((p) => (
-      <div key={p.name} className="flex h-24 items-center justify-center">
-        <img src={p.src} alt={p.name} className="max-h-20 w-auto max-w-[210px] object-contain" loading="lazy" />
-      </div>
-    ))}
-  </div>
-
-  {/* Center text (our own) */}
-  <div className="order-1 col-span-2 text-center lg:order-2 lg:col-span-3">
-    <p className="text-xs font-mono font-bold uppercase tracking-widest text-foundation-green">Partners &amp; Funders</p>
-    <h2 className="mt-3 font-serif text-4xl font-bold tracking-tight text-foundation-dark sm:text-5xl">
-      A National &amp; Global Network
-    </h2>
-    <p className="mt-3 font-serif text-lg italic text-stone-slate">
-      of institutional partners and funders
-    </p>
-  </div>
-
-  {/* Right logos */}
-  <div className="order-3 grid grid-cols-2 gap-x-8 gap-y-10 lg:col-span-3">
-    {[
-      { src: '/partners/birac.png', name: 'BIRAC' },
-      { src: '/partners/dst.png', name: 'Department of Science & Technology' },
-      { src: '/partners/dbt.png', name: 'Department of Biotechnology' },
-      { src: '/partners/msde.png', name: 'Ministry of Skill Development & Entrepreneurship' },
-    ].map((p) => (
-      <div key={p.name} className="flex h-24 items-center justify-center">
-        <img src={p.src} alt={p.name} className="max-h-20 w-auto max-w-[210px] object-contain" loading="lazy" />
-      </div>
-    ))}
-  </div>
-</div>
-</div>
-</section>
-{/**/}
 <section className="w-full bg-parchment py-16 border-b border-subtle-border" id="portfolio">
 <div className="max-w-7xl mx-auto px-6 lg:px-12">
 <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-subtle-border pb-6 mb-8 gap-6">
@@ -479,35 +416,6 @@ const Home = () => {
 ))}
 </div>
 </div>
-</section>
-{/**/}
-      <LeadershipTeam />
-{/**/}
-{/* Events */}
-<section className="w-full bg-white py-16 border-b border-subtle-border">
-  <div className="max-w-7xl mx-auto px-6 lg:px-12">
-    <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-subtle-border pb-6 mb-8 gap-4">
-      <div>
-        <div className="flex items-center gap-2 mb-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-brand-green"></span>
-          <span className="text-xs font-mono font-bold text-foundation-green tracking-widest uppercase">Incubation Stories</span>
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-serif font-bold text-foundation-dark tracking-tight">Featured Ventures</h2>
-      </div>
-      <a href="/events" className="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-foundation-green hover:text-brand-green transition-colors">
-        View all events
-        <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-      </a>
-    </div>
-
-    <CollapsingCards
-      cards={[
-        { number: '01', slug: 'sahayatha-healthcare', image: '/ventures/sahayatha.jpg', title: 'Sahayatha Healthcare', loc: 'Coimbatore', tag: 'HealthTech', logo: false, desc: 'Affordable, community-focused healthcare bringing quality medical services to underserved patients.' },
-        { number: '02', slug: 'forschmedx-trachease', image: '/ventures/forschmedx.jpg', title: 'ForschMedX — TrachEase', loc: 'Punjab / Mumbai', tag: 'MedTech', logo: false, desc: 'A medical device venture improving tracheostomy care for patients and clinicians.' },
-        { number: '03', slug: 'even-cargo', image: '/ventures/evencargo.jpg', title: 'Even Cargo', loc: 'Delhi', tag: 'Logistics', logo: false, desc: 'India’s first women-only e-commerce logistics company, training women from marginalised communities as delivery professionals.' },
-      ]}
-    />
-  </div>
 </section>
 {/**/}
 {/* Impact */}
@@ -579,7 +487,7 @@ const Home = () => {
             Annual Reports
           </h2>
 <p className="text-xs sm:text-sm text-stone-slate mt-1 max-w-2xl font-sans">
-            As a Section 8 company, we publish our annual reports for each financial year for public review.
+            As a registered non-profit company, we publish our annual reports for each financial year for public review.
           </p>
 </div>
 <span className="text-xs font-mono text-stone-slate bg-parchment px-3.5 py-2 rounded-lg border border-subtle-border uppercase tracking-wider">

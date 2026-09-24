@@ -18,7 +18,7 @@ const About = () => {
       <PageHeader
         eyebrow="About"
         title="About TISS Incube Foundation"
-        description="An independent Section 8 company driving inclusive innovation and entrepreneurship, with a focus on rural and difficult areas."
+        description="An independent non-profit company driving inclusive innovation and entrepreneurship, with a focus on rural and difficult areas."
       />
 
       <Section tone="default">
@@ -26,7 +26,7 @@ const About = () => {
           <div className="lg:col-span-2">
             <div className="space-y-5 text-base leading-relaxed text-slate-700">
               <p>
-                TISS Incube Foundation, the Section 8 Company, is an independent entity jointly
+                TISS Incube Foundation is an independent non-profit entity jointly
                 set up by the Tata Institute of Social Sciences (TISS) and the Bombay Mothers and
                 Children Welfare Society (BMCWS), with its registered office at Rajgurunagar
                 (District Pune, Maharashtra) and operating offices in Mumbai at the TISS and
@@ -52,7 +52,7 @@ const About = () => {
 
           <aside className="space-y-4">
             {[
-              { icon: Building2, label: 'Structure', value: 'Section 8 Company (TISS + BMCWS)' },
+              { icon: Building2, label: 'Structure', value: 'Non-Profit Company (TISS + BMCWS)' },
               { icon: Target, label: 'Focus', value: 'Rural & difficult areas, social impact' },
               { icon: Users2, label: 'Backed by', value: '80+ years of TISS research' },
             ].map((item) => (

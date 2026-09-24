@@ -26,8 +26,8 @@ const AboutPreview = () => {
         <div className="lg:sticky lg:top-28">
           <SectionHeading
             eyebrow="About the Foundation"
-            title="A Section 8 company built for rural and social innovation."
-            description="TISS Incube Foundation is an independent Section 8 company jointly set up by the Tata Institute of Social Sciences (TISS) and the Bombay Mothers and Children Welfare Society (BMCWS), with its registered office in Rajgurunagar, Pune and operating offices at the TISS and BMCWS campuses in Mumbai."
+            title="A non-profit company built for rural and social innovation."
+            description="TISS Incube Foundation is an independent non-profit company jointly set up by the Tata Institute of Social Sciences (TISS) and the Bombay Mothers and Children Welfare Society (BMCWS), with its registered office in Rajgurunagar, Pune and operating offices at the TISS and BMCWS campuses in Mumbai."
           />
           <div className="mt-8 flex flex-wrap gap-3">
             <Button to="/about">Learn more about us</Button>

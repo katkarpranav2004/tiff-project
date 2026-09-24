@@ -13,6 +13,7 @@ const About = lazy(() => import('./pages/public/About'));
 const Incubatees = lazy(() => import('./pages/public/Incubatees'));
 const IncubateeStory = lazy(() => import('./pages/public/IncubateeStory'));
 const Courses = lazy(() => import('./pages/public/Courses'));
+const Partnerships = lazy(() => import('./pages/public/Partnerships'));
 const CourseDetail = lazy(() => import('./pages/public/CourseDetail'));
 const Events = lazy(() => import('./pages/public/Events'));
 const EventDetail = lazy(() => import('./pages/public/EventDetail'));
@@ -69,6 +70,7 @@ function App() {
                 <Route path="/incubatees/:slug" element={<IncubateeStory />} />
                 <Route path="/courses" element={<Courses />} />
                 <Route path="/courses/:slug" element={<CourseDetail />} />
+                <Route path="/partnerships" element={<Partnerships />} />
                 <Route path="/events" element={<Events />} />
                 <Route path="/events/story/:slug" element={<EventStory />} />
                 <Route path="/events/:slug" element={<EventDetail />} />

@@ -33,7 +33,7 @@ const InnovationNetwork = () => {
 
 const seals = [
   { icon: GraduationCap, big: '80+ Years', label: 'Academic rigour (TISS)' },
-  { icon: Landmark, big: 'Section 8', label: 'Registered non-profit' },
+  { icon: Landmark, big: 'Non-Profit', label: 'Registered non-profit' },
   { icon: Users2, big: 'TISS × BMCWS', label: 'Founding partnership' },
 ];
 
@@ -49,7 +49,7 @@ const Hero = () => {
               Tata Institute of Social Sciences × BMCWS
             </span>
             <span className="text-gold">/</span>
-            <span className="font-heading text-[13px] italic tracking-wide text-ink/60">Section 8 Entity</span>
+            <span className="font-heading text-[13px] italic tracking-wide text-ink/60">Non-Profit Entity</span>
           </div>
 
           <motion.h1
@@ -66,7 +66,7 @@ const Hero = () => {
           </motion.h1>
 
           <p className="mt-6 max-w-xl font-heading text-xl leading-relaxed text-ink/60 sm:text-2xl">
-            An independent Section 8 company helping entrepreneurs transform ideas into meaningful,
+            An independent non-profit company helping entrepreneurs transform ideas into meaningful,
             scalable ventures — through incubation, mentorship and training, backed by TISS.
           </p>
 

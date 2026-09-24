@@ -19,6 +19,7 @@ const NAV: NavItem[] = [
   { name: 'About', to: '/about' },
   { name: 'Incubatees', to: '/incubatees' },
   { name: 'Courses', to: '/courses' },
+  { name: 'Partnerships', to: '/partnerships' },
   {
     name: 'Annual Reports',
     mega: {
@@ -80,7 +81,7 @@ const NAV: NavItem[] = [
 ];
 
 const linkHover =
-  'py-1 transition-colors hover:text-foundation-green hover:underline underline-offset-[6px] decoration-ochre-gold decoration-2';
+  'py-1 transition-colors hover:text-[#E84D91] hover:underline underline-offset-[6px] decoration-[#E84D91] decoration-2';
 
 const Header = () => {
   const [active, setActive] = useState<string | null>(null);
@@ -96,7 +97,13 @@ const Header = () => {
   const activeItem = NAV.find((n) => n.name === active && n.mega);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-subtle-border bg-warm-ivory/95 backdrop-blur-md">
+    <header
+      className="sticky top-0 z-40 border-b border-[#EADFF2]/70 backdrop-blur-md shadow-[0_1px_24px_-8px_rgba(232,77,145,0.18)]"
+      style={{
+        background:
+          'linear-gradient(110deg, rgba(248,239,255,0.94) 0%, rgba(247,243,250,0.94) 45%, rgba(255,247,247,0.94) 100%)',
+      }}
+    >
       <div className="relative" onMouseLeave={() => setActive(null)}>
         <div className="w-full px-6 lg:px-12 h-20 flex items-center justify-between">
           {/* Logo left */}
@@ -105,19 +112,24 @@ const Header = () => {
           </Link>
 
           {/* Center nav */}
-          <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-stone-slate font-sans">
+          <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-[#2A2540] font-sans">
             {NAV.map((item) =>
               item.mega ? (
                 <button
                   key={item.name}
                   onMouseEnter={() => setActive(item.name)}
-                  className={clsx('flex items-center gap-1', linkHover, active === item.name && 'text-foundation-green underline')}
+                  className={clsx('flex items-center gap-1', linkHover, active === item.name && 'text-[#E84D91] underline')}
                 >
                   {item.name}
                   <ChevronDown className={clsx('h-4 w-4 transition-transform', active === item.name && 'rotate-180')} />
                 </button>
               ) : (
-                <Link key={item.name} to={item.to!} onMouseEnter={() => setActive(null)} className={linkHover}>
+                <Link
+                  key={item.name}
+                  to={item.to!}
+                  onMouseEnter={() => setActive(null)}
+                  className={clsx(linkHover, location.pathname === item.to && 'text-[#E84D91] underline')}
+                >
                   {item.name}
                 </Link>
               )
@@ -126,7 +138,7 @@ const Header = () => {
 
           {/* Actions right */}
           <div className="flex items-center gap-3 font-mono text-xs">
-            <Link className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono font-semibold text-stone-slate hover:text-foundation-green transition-colors" to="/certificates/verify">
+            <Link className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono font-semibold text-[#2A2540] hover:text-foundation-green transition-colors" to="/certificates/verify">
               <span className="material-symbols-outlined text-[16px] text-brand-green">verified</span>
               <span>Verify CAIE</span>
             </Link>
@@ -179,7 +191,7 @@ const Header = () => {
                 {/* Promo card */}
                 <div className="flex-1 rounded-2xl border border-subtle-border bg-warm-alabaster p-7 shadow-xl">
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-foundation-green px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-warm-ivory">
-                    <span className="material-symbols-outlined text-[13px] text-ochre-light">verified</span>
+                    <span className="material-symbols-outlined text-[13px] text-warm-ivory">verified</span>
                     {activeItem.mega.promo.badge}
                   </span>
                   <h3 className="mt-4 font-serif text-2xl font-bold text-foundation-dark">{activeItem.mega.promo.title}</h3>
@@ -209,7 +221,10 @@ const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden overflow-hidden border-t border-subtle-border bg-warm-ivory"
+            className="lg:hidden overflow-hidden border-t border-[#EADFF2]/70"
+            style={{
+              background: 'linear-gradient(180deg, #FBF6FF 0%, #FAF8FC 50%, #FFFBFB 100%)',
+            }}
           >
             <nav className="flex flex-col gap-1 px-6 py-4">
               {NAV.map((item) =>
@@ -227,7 +242,14 @@ const Header = () => {
                     </div>
                   </div>
                 ) : (
-                  <Link key={item.name} to={item.to!} className="border-b border-subtle-border py-2 font-serif text-base font-semibold text-foundation-dark">
+                  <Link
+                    key={item.name}
+                    to={item.to!}
+                    className={clsx(
+                      'border-b border-subtle-border py-2 font-serif text-base font-semibold',
+                      location.pathname === item.to ? 'text-[#E84D91]' : 'text-foundation-dark'
+                    )}
+                  >
                     {item.name}
                   </Link>
                 )
